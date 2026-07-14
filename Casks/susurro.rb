@@ -12,6 +12,13 @@ cask "susurro" do
 
   app "Susurro.app", target: "~/Applications/Susurro.app"
 
+  postflight do
+    system_command "/usr/bin/xattr",
+      args: ["-dr", "com.apple.quarantine", staged_path/"Susurro.app"]
+    system_command "/usr/bin/xattr",
+      args: ["-dr", "com.apple.provenance", staged_path/"Susurro.app"]
+  end
+
   zap trash: [
     "~/Library/Application Support/Susurro",
     "~/Library/Preferences/com.mtwomey.susurro.plist",
