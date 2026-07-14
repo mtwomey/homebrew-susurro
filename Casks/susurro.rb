@@ -10,7 +10,7 @@ cask "susurro" do
   depends_on macos: ">= :sequoia"
   depends_on arch: :arm64
 
-  app "Susurro.app"
+  app "Susurro.app", target: "~/Applications/Susurro.app"
 
   zap trash: [
     "~/Library/Application Support/Susurro",
