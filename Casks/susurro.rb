@@ -7,7 +7,7 @@ cask "susurro" do
   desc "Push-to-talk dictation for macOS powered by whisper.cpp"
   homepage "https://github.com/mtwomey/susurro"
 
-  depends_on macos: ">= :sequoia"
+  depends_on macos: :sequoia
   depends_on arch: :arm64
 
   app "Susurro.app", target: "~/Applications/Susurro.app"
