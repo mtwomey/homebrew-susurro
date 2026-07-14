@@ -24,5 +24,9 @@ cask "susurro" do
     "~/Library/Preferences/com.mtwomey.susurro.plist",
     "~/Library/Caches/com.mtwomey.susurro",
     "~/Library/Saved Application State/com.mtwomey.susurro.savedState",
-  ]
+  ],
+      script: {
+        executable: "/bin/sh",
+        args: ["-c", "tccutil reset Accessibility com.mtwomey.susurro; tccutil reset Microphone com.mtwomey.susurro"],
+      }
 end
