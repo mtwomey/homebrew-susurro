@@ -27,6 +27,6 @@ cask "susurro" do
   ],
       script: {
         executable: "/bin/sh",
-        args: ["-c", "tccutil reset Accessibility com.mtwomey.susurro; tccutil reset Microphone com.mtwomey.susurro"],
+        args: ["-c", "tccutil reset Accessibility com.mtwomey.susurro; tccutil reset Microphone com.mtwomey.susurro; true"],
       }
 end
