@@ -24,14 +24,16 @@ cask "susurro" do
   # artifact is removed) rather than `zap`'s early_script (which fires
   # after removal and always fails with "No such bundle identifier").
   #
-  # `uninstall` also fires during `brew upgrade`/`brew reinstall`, which we
-  # don't want stripping Mic/Accessibility grants on every version bump. So
-  # this is guarded to only run when the invoking brew process was actually
-  # given --zap (a real `brew uninstall --zap`), by checking the parent
-  # process's own command line.
+  # `uninstall` also fires during `brew upgrade`/`brew reinstall`, which
+  # should NOT reset Mic/Accessibility grants (permissions should survive a
+  # version bump). Only a genuine `brew uninstall` (with or without --zap)
+  # should reset them. Homebrew doesn't expose that distinction to scripts,
+  # so it's derived by checking the invoking brew process's own command
+  # line for the literal "uninstall" subcommand -- "upgrade" and
+  # "reinstall" never match that word.
   uninstall early_script: {
     executable: "/bin/sh",
-    args: ["-c", "if ps -o command= -p \"$PPID\" 2>/dev/null | grep -q -- '--zap'; then tccutil reset Accessibility com.mtwomey.susurro; tccutil reset Microphone com.mtwomey.susurro; fi; true"],
+    args: ["-c", "if ps -o command= -p \"$PPID\" 2>/dev/null | grep -Eq '(^|[[:space:]])uninstall([[:space:]]|$)'; then tccutil reset Accessibility com.mtwomey.susurro; tccutil reset Microphone com.mtwomey.susurro; fi; true"],
   }
 
   zap trash: [
