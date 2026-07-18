@@ -1,6 +1,6 @@
 cask "susurro" do
-  version "0.1.7"
-  sha256 "69ffb5482fdd10862b362b4f45e293a03480463e1f3b66b2c58a5aac061f2d58"
+  version "0.1.8"
+  sha256 "94819f8ad0c4109125adb6d0172831ec2640177467964bc6e089c37d5e158920"
 
   url "https://github.com/mtwomey/susurro/releases/download/v#{version}/Susurro-#{version}.zip"
   name "Susurro"
