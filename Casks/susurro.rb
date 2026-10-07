@@ -12,11 +12,17 @@ cask "susurro" do
 
   app "Susurro.app", target: "~/Applications/Susurro.app"
 
-  postflight do
-    system_command "/usr/bin/xattr",
-      args: ["-dr", "com.apple.quarantine", staged_path/"Susurro.app"]
-    system_command "/usr/bin/xattr",
-      args: ["-dr", "com.apple.provenance", staged_path/"Susurro.app"]
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args:           ["-dr", "com.apple.quarantine", "{{staged_path}}/Susurro.app/"],
+        must_succeed:   false,
+        writable_paths: ["~/Applications/Susurro.app"],
+        writable_base:  :absolute
+    run "/usr/bin/xattr",
+        args:           ["-dr", "com.apple.provenance", "{{staged_path}}/Susurro.app/"],
+        must_succeed:   false,
+        writable_paths: ["~/Applications/Susurro.app"],
+        writable_base:  :absolute
   end
 
   # tccutil can only resolve a bundle id while the app is still on disk, so
