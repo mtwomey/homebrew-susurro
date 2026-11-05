@@ -1,10 +1,10 @@
 cask "susurro" do
-  version "0.1.9"
-  sha256 "dd1c53cd4c549a82fdaab72d975c33c6223385a4b61e539e500df55459785bdf"
+  version "0.2.0-beta.1"
+  sha256 "7705ad3fa4ce7f64199773cbddd2682fbcc09557b12239263d4a8b9a513d7f74"
 
   url "https://github.com/mtwomey/susurro/releases/download/v#{version}/Susurro-#{version}.zip"
   name "Susurro"
-  desc "Push-to-talk dictation for macOS powered by whisper.cpp"
+  desc "Push-to-talk and hands-free dictation for macOS (whisper.cpp or Parakeet)"
   homepage "https://github.com/mtwomey/susurro"
 
   depends_on macos: :sequoia
